@@ -1,0 +1,69 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define mod 1000000007
+#define  rep(i,b) for (ll i =1; i <= (b); i++)
+#define  rrep(i,b) for (ll i =b; i> 0; i--)
+#define  repp(i,b) for (ll i =0; i < (b); i++)
+#define  rrepp(i,b) for (ll i =b; i >=0; i--)
+#define test int t; cin>>t; while(t--)
+#define fio ios_base::sync_with_stdio(false);
+#define test int t; cin>>t; while(t--)
+#define pb push_back
+#define fp(i) fixed<<setprecision(i)
+#define s(n) scanf("%lld",&n)
+#define F first
+#define S second
+#define endl '\n'
+#define mp(a,b) make_pair(a,b)
+#define all(v) v.begin(),v.end()
+#define pll pair<ll, ll>
+#define vpll vector<pll>
+#define vbll vector<bool>
+#define vvll vector<vll>
+#define show(A) for (auto i: A) cout << i << " "; cout << '\n';
+#define show_(A, n) repp(i, n) { show(A[i]) }
+typedef long long  int ll;
+typedef unsigned long long int ull;
+typedef long double ld;
+typedef vector <ll> vll;
+ll pref[10000006];
+void prefix(string s) {
+  pref[0] = 0;
+  rep(i, s.length()) {
+    ll len = pref[i - 1];
+    while (len > 0 && s[i] != s[len]) {
+      len = pref[len - 1];
+    }
+    if (s[i] == s[len]) {
+      len++;
+    }
+    pref[i] = len;
+  }
+}
+void solve() {
+  string s;
+  string ss;
+  cin >> s >> ss;
+  ll ind = 0;
+  ll count = 0;
+  s = ss + "#" + s;
+  prefix(s);
+  repp(i, s.size()) {
+    if (pref[i] == ss.size()) {
+      count++;
+    }
+  }
+  cout << count << endl;
+}
+int main() {
+#ifndef ONLINE_JUDGE
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+#else
+// online submission
+#endif
+  solve();
+  return 0;
+}
+
+
